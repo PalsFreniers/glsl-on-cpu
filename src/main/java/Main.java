@@ -39,7 +39,7 @@ public class Main {
                 verbose.setRequired(false);
                 options.addOption(verbose);
 
-                Option prefix = new Option("p", "prefix", false,
+                Option prefix = new Option("p", "prefix", true,
                                 "set the prefix to add to compiled function names");
                 prefix.setRequired(false);
                 options.addOption(prefix);
@@ -62,6 +62,7 @@ public class Main {
                 }
 
                 if (cmd.hasOption(prefix.getLongOpt())) {
+                        System.out.println(cmd.getOptionValue(prefix.getLongOpt()));
                         Utils.prefix = cmd.getOptionValue(prefix.getLongOpt());
                 }
 
@@ -81,6 +82,7 @@ public class Main {
 
         public static void main(String[] args) throws Exception {
                 parseArgs(args);
+                System.out.println(Utils.prefix);
                 LangLexer langLexer = new LangLexer(CharStreams.fromFileName(filePath.toString()));
                 LangParser langParser = new LangParser(new CommonTokenStream(langLexer));
                 langParser.removeErrorListeners();
