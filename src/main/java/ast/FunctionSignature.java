@@ -1,5 +1,6 @@
 package ast;
 
+import utils.*;
 import ast.types.*;
 import org.bytedeco.javacpp.*;
 import org.bytedeco.llvm.LLVM.*;
@@ -121,7 +122,7 @@ public class FunctionSignature {
 
     public String getLLVMID() {
         if (cLinkage) {
-            return "GLSL_" + id;
+            return Utils.prefix + id;
         } else {
             StringBuilder sb = new StringBuilder("$" + id);
             parameters.forEach(parameter ->
